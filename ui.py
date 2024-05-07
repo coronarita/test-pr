@@ -1,7 +1,6 @@
-# ch 6.6.1 ui.py
+# ch 8.1.3 ui.py
 
 ## main.py의 Calculator 클래스에서 화면정의, 초기화, 에디트 화면처리 분리
-# 거듭제곱 기능 연산자 추가
 
 from PyQt5.QtWidgets import (
     QApplication,
@@ -13,9 +12,10 @@ from PyQt5.QtWidgets import (
     QHBoxLayout,
     QLineEdit,
     QComboBox,
-)
+    QLabel,
+)  # QLabel 추가
 
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QFont  # QFont추가
 from PyQt5 import QtCore
 
 
@@ -29,6 +29,8 @@ class View(QWidget):
         self.te1 = QPlainTextEdit()
         self.te1.setReadOnly(True)
 
+        self.lbl1 = QLabel("v2.3.0", self)  # 버전 정보 표시를 위한 lbl1 위젯 생성
+        self.lbl1.setFont(QFont("Consolas", 10))  # 폰트 설정 추가, Consolas, 사이즈 10
         self.btn1 = QPushButton("Calc", self)  # 버튼 이름 변경
         self.btn2 = QPushButton("Clear", self)
 
@@ -49,7 +51,8 @@ class View(QWidget):
         hbox_formular.addWidget(self.le2)
 
         hbox = QHBoxLayout()
-        hbox.addStretch(1)  # 공백
+        # hbox.addStretch(1)  # 공백
+        hbox.addWidget(self.lbl1)  # 버전정보 표시를 위한 lbl1 위젯 생성
         hbox.addWidget(self.btn1)
         hbox.addWidget(self.btn2)
 
